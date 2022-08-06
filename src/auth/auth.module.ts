@@ -8,6 +8,7 @@ import { JwtModule } from '@nestjs/jwt';
 import { PassportModule } from '@nestjs/passport';
 import { JwtStrategy } from './jwt.strategy';
 import { ConfigModule } from '@nestjs/config';
+import { ResetToken } from './entities/reset-token';
 
 @Module({
   imports: [
@@ -17,6 +18,7 @@ import { ConfigModule } from '@nestjs/config';
       signOptions: { expiresIn: '2678400s' },
     }),
     TypeOrmModule.forFeature([User]),
+    TypeOrmModule.forFeature([ResetToken]),
     ConfigModule,
   ],
   controllers: [AuthController],

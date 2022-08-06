@@ -3,9 +3,11 @@ import {
   CreateDateColumn,
   DeleteDateColumn,
   Entity,
+  OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
+import { ResetToken } from './reset-token';
 
 @Entity()
 export class User {
@@ -35,4 +37,7 @@ export class User {
 
   @DeleteDateColumn()
   deletedAt?: Date;
+
+  @OneToMany(() => ResetToken, (resetToken) => resetToken.user)
+  resetTokens: ResetToken[];
 }

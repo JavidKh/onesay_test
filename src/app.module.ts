@@ -6,6 +6,7 @@ import { AppService } from './app.service';
 import { AuthModule } from './auth/auth.module';
 import { User } from './auth/entities/user.entity';
 import { ConfigModule, ConfigService } from '@nestjs/config';
+import { ResetToken } from './auth/entities/reset-token';
 
 @Module({
   imports: [
@@ -22,7 +23,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
         username: 'root',
         password: 'secret',
         database: 'onesay',
-        entities: [User],
+        entities: [User, ResetToken],
         synchronize: true,
       }),
       inject: [ConfigService],
