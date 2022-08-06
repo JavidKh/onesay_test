@@ -24,6 +24,9 @@ export class User {
   @Column({ nullable: true, type: 'date' })
   dob: Date;
 
+  @Column({ default: false })
+  public isConfirmed: boolean;
+
   @CreateDateColumn()
   created!: Date;
 
