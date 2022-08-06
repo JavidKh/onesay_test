@@ -104,6 +104,9 @@ export class AuthService {
     });
     if (user && (await bcrypt.compare(password, user.password))) {
       const payload: JwtPayload = { email: user.email };
+      if (!user.isConfirmed) {
+        throw new BadRequestException('User is not confirmed');
+      }
       const access_token: string = await this.jwtService.sign(payload);
       return {
         access_token,
@@ -111,5 +114,13 @@ export class AuthService {
     } else {
       throw new BadRequestException('Credentials are wrong');
     }
+  }
+
+  async getUser(user: User) {
+    return {
+      fullname: user.full_name,
+      email: user.email,
+      dob: user.dob,
+    };
   }
 }
