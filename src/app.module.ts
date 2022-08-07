@@ -4,11 +4,12 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { AuthModule } from './auth/auth.module';
-import { User } from './auth/entities/user.entity';
+import { User } from './user/entities/user.entity';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { ResetToken } from './auth/entities/reset-token';
 import { PreferenceModule } from './preference/preference.module';
 import { Preference } from './preference/entities/preference.entity';
+import { UserModule } from './user/user.module';
 
 @Module({
   imports: [
@@ -49,6 +50,8 @@ import { Preference } from './preference/entities/preference.entity';
     }),
 
     PreferenceModule,
+
+    UserModule,
   ],
   controllers: [AppController],
   providers: [AppService],

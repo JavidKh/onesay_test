@@ -1,21 +1,10 @@
-import {
-  Body,
-  Controller,
-  Get,
-  Patch,
-  Post,
-  Query,
-  UseGuards,
-} from '@nestjs/common';
-import { AuthGuard } from '@nestjs/passport';
+import { Body, Controller, Get, Patch, Post, Query } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import ConfirmEmailDto from './dto/confirm-email.dto';
 import { LoginCredentialsDto } from './dto/login-credentials.dto';
 import { RegisterCredentialsDto } from './dto/register-credentials.dto';
 import RequestResetPasswordDto from './dto/request-reset-password.dto';
 import ResetPasswordDto from './dto/reset-password.dto';
-import { User } from './entities/user.entity';
-import { GetUser } from './get-user.decorator';
 
 @Controller('auth')
 export class AuthController {
@@ -41,12 +30,6 @@ export class AuthController {
   @Patch('/password')
   resetPassword(@Body() resetPasswordDto: ResetPasswordDto) {
     return this.authService.resetPassword(resetPasswordDto);
-  }
-
-  @UseGuards(AuthGuard())
-  @Get('/user')
-  create(@GetUser() user: User) {
-    return this.authService.getUser(user);
   }
 
   @Get('confirm-email')

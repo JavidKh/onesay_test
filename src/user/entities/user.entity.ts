@@ -1,13 +1,16 @@
+import { ResetToken } from 'src/auth/entities/reset-token';
+import { Preference } from 'src/preference/entities/preference.entity';
 import {
   Column,
   CreateDateColumn,
   DeleteDateColumn,
   Entity,
+  JoinTable,
+  ManyToMany,
   OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
-import { ResetToken } from './reset-token';
 
 @Entity()
 export class User {
@@ -40,4 +43,8 @@ export class User {
 
   @OneToMany(() => ResetToken, (resetToken) => resetToken.user)
   resetTokens: ResetToken[];
+
+  @ManyToMany(() => Preference)
+  @JoinTable()
+  preferences: Preference[];
 }

@@ -4,7 +4,7 @@ import {
   Injectable,
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { In, Repository } from 'typeorm';
 import { CreatePreferenceDto } from './dto/create-preference.dto';
 import { Preference } from './entities/preference.entity';
 
@@ -50,5 +50,13 @@ export class PreferenceService {
 
   findAll() {
     return this.preferenceRepository.find();
+  }
+
+  async findByIds(preferencesId: []) {
+    console.log('pre', preferencesId);
+    const list = await this.preferenceRepository.find({
+      where: { id: In(preferencesId) },
+    });
+    return list;
   }
 }
