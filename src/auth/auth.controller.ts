@@ -1,11 +1,12 @@
 import { Body, Controller, Get, Patch, Post, Query } from '@nestjs/common';
+import { ApiTags } from '@nestjs/swagger';
 import { AuthService } from './auth.service';
 import ConfirmEmailDto from './dto/confirm-email.dto';
 import { LoginCredentialsDto } from './dto/login-credentials.dto';
 import { RegisterCredentialsDto } from './dto/register-credentials.dto';
 import RequestResetPasswordDto from './dto/request-reset-password.dto';
 import ResetPasswordDto from './dto/reset-password.dto';
-
+@ApiTags('Auth')
 @Controller('auth')
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
