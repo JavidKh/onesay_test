@@ -7,6 +7,8 @@ import { AuthModule } from './auth/auth.module';
 import { User } from './auth/entities/user.entity';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { ResetToken } from './auth/entities/reset-token';
+import { PreferenceModule } from './preference/preference.module';
+import { Preference } from './preference/entities/preference.entity';
 
 @Module({
   imports: [
@@ -23,7 +25,7 @@ import { ResetToken } from './auth/entities/reset-token';
         username: 'root',
         password: 'secret',
         database: 'onesay',
-        entities: [User, ResetToken],
+        entities: [User, ResetToken, Preference],
         synchronize: true,
       }),
       inject: [ConfigService],
@@ -45,6 +47,8 @@ import { ResetToken } from './auth/entities/reset-token';
       }),
       inject: [ConfigService],
     }),
+
+    PreferenceModule,
   ],
   controllers: [AppController],
   providers: [AppService],
