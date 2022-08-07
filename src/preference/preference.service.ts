@@ -31,8 +31,24 @@ export class PreferenceService {
       }
     }
   }
+  async seed() {
+    if ((await this.findAll()).length < 1) {
+      await this.preferenceRepository
+        .createQueryBuilder()
+        .insert()
+        .into(Preference)
+        .values([
+          { name: 'Furniture' },
+          { name: 'Music' },
+          { name: 'Clothing' },
+          { name: 'Hardware' },
+          { name: 'Jewelery' },
+        ])
+        .execute();
+    }
+  }
 
   findAll() {
-    return `This action returns all preference`;
+    return this.preferenceRepository.find();
   }
 }
