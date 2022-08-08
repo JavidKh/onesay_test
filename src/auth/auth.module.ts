@@ -9,6 +9,7 @@ import { PassportModule } from '@nestjs/passport';
 import { JwtStrategy } from './jwt.strategy';
 import { ConfigModule } from '@nestjs/config';
 import { ResetToken } from './entities/reset-token';
+import { MailModule } from '../mail/mail.module';
 
 @Module({
   imports: [
@@ -20,6 +21,7 @@ import { ResetToken } from './entities/reset-token';
     TypeOrmModule.forFeature([User]),
     TypeOrmModule.forFeature([ResetToken]),
     ConfigModule,
+    MailModule,
   ],
   controllers: [AuthController],
   providers: [AuthService, JwtStrategy],

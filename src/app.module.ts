@@ -9,6 +9,8 @@ import { ResetToken } from './auth/entities/reset-token';
 import { PreferenceModule } from './preference/preference.module';
 import { Preference } from './preference/entities/preference.entity';
 import { UserModule } from './user/user.module';
+import { MailService } from './mail/mail.service';
+import { MailModule } from './mail/mail.module';
 
 @Module({
   imports: [
@@ -51,7 +53,9 @@ import { UserModule } from './user/user.module';
     PreferenceModule,
 
     UserModule,
+
+    MailModule,
   ],
-  providers: [AppService],
+  providers: [AppService, MailService],
 })
 export class AppModule {}
